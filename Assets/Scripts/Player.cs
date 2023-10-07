@@ -59,7 +59,6 @@ public class Player : MonoBehaviour
     {
         rb.AddRelativeForce(movementValue.x * Time.deltaTime, 0, movementValue.y * Time.deltaTime);
         rb.AddRelativeTorque(0, lookValue * Time.deltaTime, 0);
-
     }
 
 }
