@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAction : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public float speed;
     public float rotationSpeed;
     private Vector2 movementValue;
     private float lookValue;
     private Rigidbody rb;
+    Animator anim;
 
     private void Awake()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
     public void OnMove(InputValue value)
     {
         movementValue = value.Get<Vector2>() * speed;
+        anim.SetBool("isMove", movementValue != Vector2.zero);
     }
 
     public void OnLook(InputValue value)
@@ -29,10 +32,26 @@ public class PlayerAction : MonoBehaviour
         lookValue = value.Get<Vector2>().x * rotationSpeed;
     }
 
+    public void OnAttack(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            anim.SetTrigger("Attack");
+        }
+    }
+
+    public void OnSkill(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            anim.SetTrigger("Skill");
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -42,4 +61,5 @@ public class PlayerAction : MonoBehaviour
         rb.AddRelativeTorque(0, lookValue * Time.deltaTime, 0);
 
     }
+
 }
