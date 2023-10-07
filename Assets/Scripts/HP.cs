@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class HP : MonoBehaviour
 {
     public float amount;
-    public float timePassed = 0;
     public UnityEvent onDeath;
     Animator anim;
 
@@ -14,22 +14,22 @@ public class HP : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (amount <= 0)
         {
-            if(CompareTag("Player"))
+            if (CompareTag("Player"))
             {
                 anim.SetTrigger("Die");
-                timePassed += Time.deltaTime;
-                if (timePassed >= 3)
+                if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 3)
                 {
-                    amount += 1000;
-                    anim.SetTrigger("replay");
+                    amount = 1000;
+                    anim.SetBool("isResult", true);
+                    SceneManager.LoadScene("ResultMode");
+                    transform.position = new Vector3(0, 0, 0);
                 }
             }
-            else
+            else if (CompareTag("Enemy"))
             {
                 onDeath.Invoke();
                 Destroy(gameObject);
