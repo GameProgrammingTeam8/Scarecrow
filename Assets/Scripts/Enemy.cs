@@ -24,7 +24,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nav.SetDestination(target.position);
+        if (nav.enabled == true)
+        {
+            nav.SetDestination(target.position);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
