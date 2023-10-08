@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class HP : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class HP : MonoBehaviour
             if (CompareTag("Player"))
             {
                 anim.SetTrigger("Die");
-                if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 3)
+                if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 5)
                 {
                     amount = 1000;
                     anim.SetBool("isResult", true);
@@ -31,8 +32,10 @@ public class HP : MonoBehaviour
             }
             else if (CompareTag("Enemy"))
             {
+                Enemy enemy = GetComponent<Enemy>();
+                enemy.enabled = false;
                 onDeath.Invoke();
-                Destroy(gameObject);
+                Destroy(gameObject,3);
             }
         }
     }
