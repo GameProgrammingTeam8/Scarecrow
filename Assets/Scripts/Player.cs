@@ -61,4 +61,32 @@ public class Player : MonoBehaviour
         rb.AddRelativeTorque(0, lookValue * Time.deltaTime, 0);
     }
 
+    private void FixedUpdate()
+    {
+        FreezeRotation();
+    }
+
+    public void FreezeRotation()
+    {
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Enemy"))
+        {
+            Vector3 reactVec = transform.position - other.transform.position;
+            StartCoroutine(KnockBack(reactVec));
+        }
+    }
+
+    IEnumerator KnockBack(Vector3 reactVec)
+    {
+        reactVec = reactVec.normalized;
+        rb.AddForce(reactVec * 30, ForceMode.Impulse);
+
+        yield return new WaitForSeconds(2);
+
+    }
+
 }
