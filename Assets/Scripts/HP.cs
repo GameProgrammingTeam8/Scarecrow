@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEngine.AI;
 
 public class HP : MonoBehaviour
 {
@@ -15,28 +14,35 @@ public class HP : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-    private void Update()
+
+    private void Start()
     {
-        if (amount <= 0)
+        StartCoroutine(DeathCheck());
+    }
+
+    IEnumerator DeathCheck()
+    {
+        while (amount > 0)
         {
-            if (CompareTag("Player"))
-            {
-                anim.SetTrigger("Die");
-                if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 5)
-                {
-                    amount = 1000;
-                    anim.SetBool("isResult", true);
-                    SceneManager.LoadScene("ResultMode");
-                    transform.position = new Vector3(0, 0, 0);
-                }
-            }
-            else if (CompareTag("Enemy"))
-            {
-                Enemy enemy = GetComponent<Enemy>();
-                enemy.enabled = false;
-                onDeath.Invoke();
-                Destroy(gameObject,3);
-            }
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        if (CompareTag("Player"))
+        {
+            anim.SetTrigger("Die");
+            yield return new WaitForSecondsRealtime(5);
+
+            transform.position = new Vector3(0, 0, 0);
+            SceneManager.LoadScene("ResultMode");
+            amount = 1000;
+            anim.SetBool("isResult", true);
+        }
+        else if (CompareTag("Enemy"))
+        {
+            Enemy enemy = GetComponent<Enemy>();
+            enemy.enabled = false;
+            onDeath.Invoke();
+            Destroy(gameObject, 3);
         }
     }
 }

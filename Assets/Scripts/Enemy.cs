@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     Player p;
     ParticleSystem ps;
 
-    NavMeshAgent nav;
+    public NavMeshAgent nav;
 
     void Start()
     {
@@ -33,6 +33,10 @@ public class Enemy : MonoBehaviour
         if (nav.enabled == true)
         {
             nav.SetDestination(target.position);
+        }
+        if(p.GetComponent<HP>().amount <= 0)
+        {
+            nav.enabled = false;
         }
     }
     private void FixedUpdate()

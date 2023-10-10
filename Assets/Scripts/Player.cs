@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
     ParticleSystem ps;
     Animator anim;
+    AudioSource aud;
+    public AudioClip attackSFX;
+    public AudioClip skillSFX;
 
     private void Awake()
     {
@@ -23,12 +26,20 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         ps = GetComponent<ParticleSystem>();
+        aud = GetComponent<AudioSource>();
     }
 
     public void OnMove(InputValue value)
     {
-        movementValue = value.Get<Vector2>() * speed;
-        anim.SetBool("isMove", movementValue != Vector2.zero);
+        if (GetComponent<HP>().amount > 0)
+        {
+            movementValue = value.Get<Vector2>() * speed;
+            anim.SetBool("isMove", movementValue != Vector2.zero);
+        }
+        else
+        {
+            movementValue = Vector2.zero;
+        }
     }
 
     public void OnLook(InputValue value)
@@ -40,8 +51,10 @@ public class Player : MonoBehaviour
     {
         if (value.isPressed)
         {
+            aud.clip = attackSFX;
             isAttack = true;
             anim.SetTrigger("Attack");
+            aud.PlayOneShot(aud.clip);
         }
     }
 
@@ -49,9 +62,11 @@ public class Player : MonoBehaviour
     {
         if (value.isPressed && isSkill == false)
         {
+            aud.clip = skillSFX;
             isAttack = true;
             isSkill = true;
             anim.SetTrigger("Skill");
+            aud.PlayOneShot(aud.clip);
             StartCoroutine(StartCooltime());
         }
     }
@@ -59,7 +74,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
