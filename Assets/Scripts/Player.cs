@@ -8,8 +8,10 @@ public class Player : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     private Vector2 movementValue;
+    public bool isAttack = false;
     private float lookValue;
     private Rigidbody rb;
+    ParticleSystem ps;
     Animator anim;
 
     private void Awake()
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
 
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        ps = GetComponent<ParticleSystem>();
     }
 
     public void OnMove(InputValue value)
@@ -36,6 +39,7 @@ public class Player : MonoBehaviour
     {
         if (value.isPressed)
         {
+            isAttack = true;
             anim.SetTrigger("Attack");
         }
     }
@@ -44,6 +48,7 @@ public class Player : MonoBehaviour
     {
         if (value.isPressed)
         {
+            isAttack = true;
             anim.SetTrigger("Skill");
         }
     }
@@ -73,7 +78,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if(other.CompareTag("Enemy") && isAttack==false)
         {
             Vector3 reactVec = transform.position - other.transform.position;
             StartCoroutine(KnockBack(reactVec));
@@ -82,11 +87,12 @@ public class Player : MonoBehaviour
 
     IEnumerator KnockBack(Vector3 reactVec)
     {
+        ps.Play();
         reactVec = reactVec.normalized;
         rb.AddForce(reactVec * 30, ForceMode.Impulse);
 
         yield return new WaitForSeconds(2);
-
+        ps.Stop();
     }
 
 }

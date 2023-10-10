@@ -8,11 +8,15 @@ public class Enemy : MonoBehaviour
     public float damage;
     public Transform target;
     Rigidbody rigid;
+    Player p;
+    ParticleSystem ps;
 
     NavMeshAgent nav;
 
     void Start()
     {
+        ps = GetComponent<ParticleSystem>();
+        p = target.GetComponent<Player>();
         rigid = GetComponent<Rigidbody>();
         nav = GetComponent<NavMeshAgent>();
         EnemyManager.instance.AddEnemy(this);
@@ -62,13 +66,15 @@ public class Enemy : MonoBehaviour
 
     IEnumerator KnockBack(Vector3 reactVec)
     {
+        ps.Play();
         reactVec = reactVec.normalized;
         reactVec += Vector3.up;
         rigid.AddForce(reactVec * 10, ForceMode.Impulse);
 
         yield return new WaitForSeconds(0.3f);
-
+        ps.Stop();
         rigid.velocity = Vector3.zero;
+        p.isAttack = false;
     }
 
 }
