@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float rotationSpeed;
     private Vector2 movementValue;
     public bool isAttack = false;
+    private bool isSkill = false;
     private float lookValue;
     private Rigidbody rb;
     ParticleSystem ps;
@@ -46,10 +47,12 @@ public class Player : MonoBehaviour
 
     public void OnSkill(InputValue value)
     {
-        if (value.isPressed)
+        if (value.isPressed && isSkill == false)
         {
             isAttack = true;
+            isSkill = true;
             anim.SetTrigger("Skill");
+            StartCoroutine(StartCooltime());
         }
     }
 
@@ -90,9 +93,23 @@ public class Player : MonoBehaviour
         ps.Play();
         reactVec = reactVec.normalized;
         rb.AddForce(reactVec * 30, ForceMode.Impulse);
+        speed -= 2000;
 
         yield return new WaitForSeconds(2);
         ps.Stop();
+        speed += 2000;
+    }
+
+    IEnumerator StartCooltime()
+    {
+        
+        yield return new WaitForSecondsRealtime(1);
+
+        yield return new WaitForSecondsRealtime(1);
+
+        yield return new WaitForSecondsRealtime(1);
+
+        isSkill = false;
     }
 
 }
