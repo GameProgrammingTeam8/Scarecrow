@@ -302,7 +302,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1
+  m_Time: 0.4
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -319,6 +319,15 @@ TrailRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -544,6 +553,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9036980633323257398, guid: 2dfbb63c9cdf7504faf4ff26b0581598,
+        type: 3}
+      propertyPath: m_CullingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9036980633323257398, guid: 2dfbb63c9cdf7504faf4ff26b0581598,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9119583033058523570, guid: 2dfbb63c9cdf7504faf4ff26b0581598,
         type: 3}
       propertyPath: m_TagString
@@ -564,7 +583,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8189980434977739222, guid: 2dfbb63c9cdf7504faf4ff26b0581598,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2034729981}
+      addedObject: {fileID: 2034729994}
     - targetCorrespondingSourceObject: {fileID: 8189980434977739222, guid: 2dfbb63c9cdf7504faf4ff26b0581598,
         type: 3}
       insertIndex: -1
@@ -1685,23 +1704,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2034729981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034729975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f37d94dc513fb449b12ab25114ad3a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 18000
-  rotationSpeed: 18
-  isAttack: 0
-  attackSFX: {fileID: 8300000, guid: 22c855003f0c4ea45a97217e52d96c7f, type: 3}
-  skillSFX: {fileID: 8300000, guid: 6bbbbf4b2cd2a94419e28ca6a50fa6c1, type: 3}
 --- !u!114 &2034729984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6685,6 +6687,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2034729994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034729975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f37d94dc513fb449b12ab25114ad3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 18000
+  rotationSpeed: 18
+  isAttack: 0
+  attackSFX: {fileID: 8300000, guid: 22c855003f0c4ea45a97217e52d96c7f, type: 3}
+  skillSFX: {fileID: 8300000, guid: 6bbbbf4b2cd2a94419e28ca6a50fa6c1, type: 3}
 --- !u!1001 &2098300331
 PrefabInstance:
   m_ObjectHideFlags: 0

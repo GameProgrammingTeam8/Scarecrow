@@ -78,7 +78,6 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         ps.Stop();
         rigid.velocity = Vector3.zero;
-        p.isAttack = false;
     }
 
 }
