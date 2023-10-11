@@ -12,9 +12,11 @@ public class Player : MonoBehaviour
     private bool isSkill = false;
     private float lookValue;
     private Rigidbody rb;
+
     ParticleSystem ps;
     Animator anim;
     AudioSource aud;
+
     public AudioClip attackSFX;
     public AudioClip skillSFX;
 
@@ -44,37 +46,33 @@ public class Player : MonoBehaviour
 
     public void OnLook(InputValue value)
     {
-        lookValue = value.Get<Vector2>().x * rotationSpeed;
+        if(GetComponent<HP>().amount > 0)
+            lookValue = value.Get<Vector2>().x * rotationSpeed;
     }
 
     public void OnAttack(InputValue value)
     {
-        if (value.isPressed)
+        if (value.isPressed && GetComponent<HP>().amount > 0)
         {
-            aud.clip = attackSFX;
-            isAttack = true;
-            anim.SetTrigger("Attack");
-            aud.PlayOneShot(aud.clip);
+            StartCoroutine(DoAttack());
         }
+    }
+
+    IEnumerator DoAttack()
+    {
+        aud.clip = attackSFX;
+        isAttack = true;
+        anim.SetTrigger("Attack");
+        yield return new WaitForSeconds(0.6f);
+        aud.PlayOneShot(aud.clip);
     }
 
     public void OnSkill(InputValue value)
     {
-        if (value.isPressed && isSkill == false)
+        if (value.isPressed && isSkill == false && GetComponent<HP>().amount > 0)
         {
-            aud.clip = skillSFX;
-            isAttack = true;
-            isSkill = true;
-            anim.SetTrigger("Skill");
-            aud.PlayOneShot(aud.clip);
-            StartCoroutine(StartCooltime());
+            StartCoroutine(Skill1());
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -105,19 +103,26 @@ public class Player : MonoBehaviour
 
     IEnumerator KnockBack(Vector3 reactVec)
     {
+        isSkill = true;
+        anim.SetTrigger("GetHit");
         ps.Play();
         reactVec = reactVec.normalized;
         rb.AddForce(reactVec * 30, ForceMode.Impulse);
         speed -= 2000;
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         ps.Stop();
+        isSkill = false;
         speed += 2000;
     }
 
-    IEnumerator StartCooltime()
+    IEnumerator Skill1()
     {
-        
+        aud.clip = skillSFX;
+        isAttack = true;
+        isSkill = true;
+        anim.SetTrigger("Skill");
+        aud.PlayOneShot(aud.clip);
         yield return new WaitForSecondsRealtime(1);
 
         yield return new WaitForSecondsRealtime(1);
