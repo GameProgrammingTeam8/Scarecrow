@@ -32,9 +32,9 @@ public class HP : MonoBehaviour
             anim.SetTrigger("Die");
             yield return new WaitForSecondsRealtime(5);
 
-            transform.position = new Vector3(0, 0, 0);
             SceneManager.LoadScene("ResultMode");
-            amount = 1000;
+            transform.position = new Vector3(0, 0, 0);
+            amount = 2000;
             anim.SetBool("isResult", true);
         }
         else if (CompareTag("Enemy"))
