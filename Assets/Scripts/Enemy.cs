@@ -7,11 +7,17 @@ public class Enemy : MonoBehaviour
 {
     public float damage;
     public Transform target;
+    Rigidbody rigid;
+    Player p;
+    ParticleSystem ps;
 
-    NavMeshAgent nav;
+    public NavMeshAgent nav;
 
     void Start()
     {
+        ps = GetComponent<ParticleSystem>();
+        p = target.GetComponent<Player>();
+        rigid = GetComponent<Rigidbody>();
         nav = GetComponent<NavMeshAgent>();
         EnemyManager.instance.AddEnemy(this);
     }
@@ -28,6 +34,20 @@ public class Enemy : MonoBehaviour
         {
             nav.SetDestination(target.position);
         }
+        if(p.GetComponent<HP>().amount <= 0)
+        {
+            nav.enabled = false;
+        }
+    }
+    private void FixedUpdate()
+    {
+        FreezeVelocity();
+    }
+
+    public void FreezeVelocity()
+    {
+        rigid.velocity = Vector3.zero;
+        rigid.angularVelocity = Vector3.zero;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,5 +61,24 @@ public class Enemy : MonoBehaviour
                 hp.amount -= damage;
             }
         }
+        else if(other.tag == "Weapon")
+        {
+            Vector3 reactVec = transform.position - other.transform.position;
+            StartCoroutine(KnockBack(reactVec));
+        }
     }
+
+    IEnumerator KnockBack(Vector3 reactVec)
+    {
+        ps.Play();
+        reactVec = reactVec.normalized;
+        reactVec += Vector3.up;
+        rigid.AddForce(reactVec * 10, ForceMode.Impulse);
+
+        yield return new WaitForSeconds(0.3f);
+        ps.Stop();
+        rigid.velocity = Vector3.zero;
+        p.isAttack = false;
+    }
+
 }
