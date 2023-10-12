@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
     {
         HP hp = other.GetComponent<HP>();
 
-        if (other.tag == "Player")
+        if (other.tag == "Player" && p.isAttack == false && p.isSkill == false)
         {
             if (hp != null)
             {

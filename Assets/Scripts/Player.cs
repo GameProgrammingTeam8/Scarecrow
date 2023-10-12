@@ -2,16 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
     public float speed;
     public float rotationSpeed;
+    public GameObject HideAttack;
+    public GameObject HideSkill1;
+    public GameObject HideSkill2;
+    public TextMeshProUGUI CoolNum1;
+    public TextMeshProUGUI CoolNum2;
+    public TextMeshProUGUI CoolNum3;
     private Vector2 movementValue;
-    private bool isAttack = false;
-    private bool isSkill = false;
+    public bool isAttack = false;
+    public bool isSkill = false;
     private bool isCoolTime = false;
+    private bool isCoolTimeD = false;
     private float lookValue;
+    private float lookX;
+    private float lookZ;
     private Rigidbody rb;
 
     ParticleSystem ps;
@@ -20,6 +30,7 @@ public class Player : MonoBehaviour
 
     public AudioClip attackSFX;
     public AudioClip skillSFX;
+    public AudioClip defendSFX;
 
     private void Awake()
     {
@@ -30,6 +41,13 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         ps = GetComponent<ParticleSystem>();
         aud = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        HideSkill1.SetActive(false);
+        HideAttack.SetActive(false);
+        HideSkill2.SetActive(false);
     }
 
     public void OnMove(InputValue value)
@@ -47,13 +65,15 @@ public class Player : MonoBehaviour
 
     public void OnLook(InputValue value)
     {
+        lookX = value.Get<Vector2>().x;
+        lookZ = value.Get<Vector2>().y;
         if(GetComponent<HP>().amount > 0)
             lookValue = value.Get<Vector2>().x * rotationSpeed;
     }
 
     public void OnAttack(InputValue value)
     {
-        if (value.isPressed && isAttack == false && isSkill == false && GetComponent<HP>().amount > 0)
+        if (value.isPressed && isAttack == false && isSkill == false && isCoolTime == false && GetComponent<HP>().amount > 0)
         {
             StartCoroutine(DoAttack());
         }
@@ -65,7 +85,10 @@ public class Player : MonoBehaviour
         isAttack = true;
         anim.SetTrigger("Attack");
         aud.PlayOneShot(aud.clip);
+        HideAttack.SetActive(true);
+        CoolNum1.SetText("");
         yield return new WaitForSeconds(0.6f);
+        HideAttack.SetActive(false);
         isAttack = false;
     }
 
@@ -84,13 +107,48 @@ public class Player : MonoBehaviour
         anim.SetTrigger("Skill");
         aud.PlayOneShot(aud.clip);
         isCoolTime = true;
+        HideSkill1.SetActive(true);
+        CoolNum2.SetText("3");
         yield return new WaitForSecondsRealtime(1);
         isSkill = false;
-
+        CoolNum2.SetText("2");
         yield return new WaitForSecondsRealtime(1);
-
+        CoolNum2.SetText("1");
         yield return new WaitForSecondsRealtime(1);
+        HideSkill1.SetActive(false);
         isCoolTime = false;
+    }
+
+    public void OnDefend(InputValue value)
+    {
+        if (value.isPressed && isAttack == false && isSkill == false && isCoolTime == false && isCoolTimeD == false && GetComponent<HP>().amount > 0)
+        {
+            StartCoroutine(Skill2());
+        }
+    }
+
+    IEnumerator Skill2()
+    {
+        aud.clip = defendSFX;
+        isSkill = true;
+        anim.SetTrigger("Defend");
+        rb.AddForce(lookX * 1000, 0, lookZ * 1000, ForceMode.VelocityChange);
+        aud.PlayOneShot(aud.clip);
+        isCoolTimeD = true;
+        HideSkill2.SetActive(true);
+        CoolNum3.SetText("5");
+        yield return new WaitForSecondsRealtime(1);
+        isSkill = false;
+        CoolNum3.SetText("4");
+        yield return new WaitForSecondsRealtime(1);
+        CoolNum3.SetText("3");
+        yield return new WaitForSecondsRealtime(1);
+        CoolNum3.SetText("2");
+        yield return new WaitForSecondsRealtime(1);
+        CoolNum3.SetText("1");
+        yield return new WaitForSecondsRealtime(1);
+        HideSkill2.SetActive(false);
+        isCoolTimeD = false;
     }
 
     // Update is called once per frame
