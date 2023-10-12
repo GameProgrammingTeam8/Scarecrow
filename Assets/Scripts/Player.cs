@@ -20,8 +20,6 @@ public class Player : MonoBehaviour
     private bool isCoolTime = false;
     private bool isCoolTimeD = false;
     private float lookValue;
-    private float lookX;
-    private float lookZ;
     private Rigidbody rb;
 
     ParticleSystem ps;
@@ -65,8 +63,6 @@ public class Player : MonoBehaviour
 
     public void OnLook(InputValue value)
     {
-        lookX = value.Get<Vector2>().x;
-        lookZ = value.Get<Vector2>().y;
         if(GetComponent<HP>().amount > 0)
             lookValue = value.Get<Vector2>().x * rotationSpeed;
     }
@@ -132,7 +128,6 @@ public class Player : MonoBehaviour
         aud.clip = defendSFX;
         isSkill = true;
         anim.SetTrigger("Defend");
-        rb.AddForce(lookX * 1000, 0, lookZ * 1000, ForceMode.VelocityChange);
         aud.PlayOneShot(aud.clip);
         isCoolTimeD = true;
         HideSkill2.SetActive(true);
