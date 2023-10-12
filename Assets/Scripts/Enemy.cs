@@ -59,6 +59,7 @@ public class Enemy : MonoBehaviour
             if (hp != null)
             {
                 hp.amount -= damage;
+                p.hpLine.localScale = new Vector3(hp.amount / p.maxHP, 1, 1);
             }
         }
         else if(other.tag == "Weapon")

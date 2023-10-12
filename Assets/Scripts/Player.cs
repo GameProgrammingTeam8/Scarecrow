@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
 {
     public float speed;
     public float rotationSpeed;
+    public float maxHP;
+    public RectTransform hpBar;
+    public RectTransform hpLine;
     public GameObject HideAttack;
     public GameObject HideSkill1;
     public GameObject HideSkill2;
@@ -20,6 +23,8 @@ public class Player : MonoBehaviour
     private bool isCoolTime = false;
     private bool isCoolTimeD = false;
     private float lookValue;
+    private float lookX;
+    private float lookZ;
     private Rigidbody rb;
 
     ParticleSystem ps;
@@ -46,6 +51,7 @@ public class Player : MonoBehaviour
         HideSkill1.SetActive(false);
         HideAttack.SetActive(false);
         HideSkill2.SetActive(false);
+        maxHP = GetComponent<HP>().amount;
     }
 
     public void OnMove(InputValue value)
@@ -63,13 +69,15 @@ public class Player : MonoBehaviour
 
     public void OnLook(InputValue value)
     {
+        lookX = value.Get<Vector2>().x;
+        lookZ = value.Get<Vector2>().y;
         if(GetComponent<HP>().amount > 0)
             lookValue = value.Get<Vector2>().x * rotationSpeed;
     }
 
     public void OnAttack(InputValue value)
     {
-        if (value.isPressed && isAttack == false && isSkill == false && isCoolTime == false && GetComponent<HP>().amount > 0)
+        if (value.isPressed && isAttack == false && isSkill == false && GetComponent<HP>().amount > 0)
         {
             StartCoroutine(DoAttack());
         }
@@ -106,9 +114,9 @@ public class Player : MonoBehaviour
         HideSkill1.SetActive(true);
         CoolNum2.SetText("3");
         yield return new WaitForSecondsRealtime(1);
-        isSkill = false;
         CoolNum2.SetText("2");
         yield return new WaitForSecondsRealtime(1);
+        isSkill = false;
         CoolNum2.SetText("1");
         yield return new WaitForSecondsRealtime(1);
         HideSkill1.SetActive(false);
@@ -128,6 +136,7 @@ public class Player : MonoBehaviour
         aud.clip = defendSFX;
         isSkill = true;
         anim.SetTrigger("Defend");
+        rb.AddForce(lookX * 300 * Time.deltaTime, 0, lookZ * 300 * Time.deltaTime, ForceMode.VelocityChange);
         aud.PlayOneShot(aud.clip);
         isCoolTimeD = true;
         HideSkill2.SetActive(true);
@@ -174,11 +183,11 @@ public class Player : MonoBehaviour
 
     IEnumerator KnockBack(Vector3 reactVec)
     {
-        isSkill = true;
         ps.Play();
         anim.SetTrigger("GetHit");
         reactVec = reactVec.normalized;
         rb.AddForce(reactVec * 40, ForceMode.Impulse);
+        isSkill = true;
         speed -= 2000;
 
         yield return new WaitForSeconds(1);
