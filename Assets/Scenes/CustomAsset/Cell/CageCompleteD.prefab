@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1121493653111828074}
+  - component: {fileID: 605722421262532207}
   m_Layer: 0
   m_Name: CageCompleteD
   m_TagString: Untagged
@@ -37,6 +38,27 @@ Transform:
   - {fileID: 5411651770408542071}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &605722421262532207
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961618511287388752}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.0626671, y: 5.494999, z: 1.3594157}
+  m_Center: {x: 1.0313331, y: 2.2474964, z: -0.013117194}
 --- !u!1 &6076965799084184546
 GameObject:
   m_ObjectHideFlags: 0
