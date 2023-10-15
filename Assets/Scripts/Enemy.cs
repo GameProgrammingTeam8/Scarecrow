@@ -25,11 +25,6 @@ public class Enemy : MonoBehaviour
         EnemyManager.instance.AddEnemy(this);
     }
 
-    private void OnDestroy()
-    {
-        EnemyManager.instance.RemoveEnemy(this);
-    }
-
     // Update is called once per frame
     void Update()
     {

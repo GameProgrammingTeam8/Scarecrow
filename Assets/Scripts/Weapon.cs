@@ -25,7 +25,19 @@ public class Weapon : MonoBehaviour
 
             if (hp != null)
             {
+                
                 hp.amount -= damage;
+                if (hp.amount <= 0)
+                {
+                    hp.hitCount++;
+                    if (hp.hitCount == 1)
+                    {
+                        Enemy enemy = other.GetComponent<Enemy>();
+                        enemy.enabled = false;
+                        EnemyManager.instance.RemoveEnemy(enemy);
+                        Destroy(other.gameObject, 2);
+                    }
+                }
             }
         }
     }

@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class HP : MonoBehaviour
 {
     public float amount;
-    public UnityEvent onDeath;
+    public int hitCount = 0;
+
     Animator anim;
 
     private void Awake()
@@ -36,13 +36,6 @@ public class HP : MonoBehaviour
             transform.position = new Vector3(0, 0, 0);
             amount = 2000;
             anim.SetBool("isResult", true);
-        }
-        else if (CompareTag("Enemy"))
-        {
-            Enemy enemy = GetComponent<Enemy>();
-            enemy.enabled = false;
-            onDeath.Invoke();
-            Destroy(gameObject, 3);
         }
     }
 }

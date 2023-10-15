@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     public int genEnemy = 0;
     public int destroyedEnemy = 0;
     public UnityEvent onChanged;
+
     private void Awake()
     {
         if (instance == null)
