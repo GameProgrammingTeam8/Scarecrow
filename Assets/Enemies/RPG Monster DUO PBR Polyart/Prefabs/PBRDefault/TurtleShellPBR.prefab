@@ -582,6 +582,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   target: {fileID: 0}
+  player: {fileID: 0}
+  playerHP: {fileID: 0}
+  nav: {fileID: 0}
 --- !u!114 &3329648336436462597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,7 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b1980a28681cc4c9fdab9228343077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 300
+  amount: 350
   onDeath:
     m_PersistentCalls:
       m_Calls: []

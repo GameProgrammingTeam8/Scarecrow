@@ -490,6 +490,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   target: {fileID: 0}
+  player: {fileID: 0}
+  playerHP: {fileID: 0}
+  nav: {fileID: 0}
 --- !u!114 &5580851592021439432
 MonoBehaviour:
   m_ObjectHideFlags: 0

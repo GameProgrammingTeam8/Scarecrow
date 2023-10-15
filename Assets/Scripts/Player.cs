@@ -40,6 +40,14 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
+        hpBar = GameObject.Find("HPBar").GetComponent<RectTransform>();
+        hpLine = GameObject.Find("HP Line").GetComponent<RectTransform>();
+        HideAttack = GameObject.Find("HideAttack");
+        HideSkill1 = GameObject.Find("HideSkill1");
+        HideSkill2 = GameObject.Find("HideSkill2");
+        CoolNum1 = GameObject.Find("CoolNum1").GetComponent<TextMeshProUGUI>();
+        CoolNum2 = GameObject.Find("CoolNum2").GetComponent<TextMeshProUGUI>();
+        CoolNum3 = GameObject.Find("CoolNum3").GetComponent<TextMeshProUGUI>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         ps = GetComponent<ParticleSystem>();
@@ -125,7 +133,7 @@ public class Player : MonoBehaviour
 
     public void OnDefend(InputValue value)
     {
-        if (value.isPressed && isAttack == false && isSkill == false && isCoolTime == false && isCoolTimeD == false && GetComponent<HP>().amount > 0)
+        if (value.isPressed && isAttack == false && isSkill == false && isCoolTimeD == false && GetComponent<HP>().amount > 0)
         {
             StartCoroutine(Skill2());
         }
@@ -176,6 +184,16 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Enemy") && isAttack == false && isSkill == false)
         {
+            HP hp = GetComponent<HP>();
+            if (hp != null)
+            {
+                hp.amount -= other.GetComponent<Enemy>().damage;
+                if (hp.amount < 0)
+                {
+                    hp.amount = 0;
+                }
+                hpLine.localScale = new Vector3(hp.amount / maxHP, 1, 1);
+            }
             Vector3 reactVec = transform.position - other.transform.position;
             StartCoroutine(KnockBack(reactVec));
         }
@@ -187,12 +205,10 @@ public class Player : MonoBehaviour
         anim.SetTrigger("GetHit");
         reactVec = reactVec.normalized;
         rb.AddForce(reactVec * 40, ForceMode.Impulse);
-        isSkill = true;
         speed -= 2000;
 
         yield return new WaitForSeconds(1);
         ps.Stop();
-        isSkill = false;
         speed += 2000;
     }
 }

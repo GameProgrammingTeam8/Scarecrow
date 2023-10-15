@@ -1599,6 +1599,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 200
   target: {fileID: 0}
+  player: {fileID: 0}
+  playerHP: {fileID: 0}
+  nav: {fileID: 0}
 --- !u!114 &-7503446060083660624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1611,7 +1614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b1980a28681cc4c9fdab9228343077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 200
+  amount: 400
   onDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -1634,7 +1637,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.8
+  m_Radius: 0.9
   m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!54 &7964581747141471213
 Rigidbody:
