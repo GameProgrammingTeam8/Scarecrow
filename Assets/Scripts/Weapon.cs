@@ -32,9 +32,19 @@ public class Weapon : MonoBehaviour
                     hp.hitCount++;
                     if (hp.hitCount == 1)
                     {
-                        Enemy enemy = other.GetComponent<Enemy>();
-                        enemy.enabled = false;
-                        EnemyManager.instance.RemoveEnemy(enemy);
+                        if(other.tag=="Enemy")
+                        {
+                            Enemy enemy = other.GetComponent<Enemy>();
+                            enemy.enabled = false;
+                            EnemyManager.instance.RemoveEnemy(enemy);
+                        }
+                        else if(other.tag=="ScareCrow")
+                        {
+                            ScareCrow scarecrow = other.GetComponent<ScareCrow>();
+                            scarecrow.GetAnimation();
+                            scarecrow.enabled = false;
+                            ScareCrowManager.instance.RemoveScareCrow(scarecrow);
+                        }
                         Destroy(other.gameObject, 2);
                     }
                 }
