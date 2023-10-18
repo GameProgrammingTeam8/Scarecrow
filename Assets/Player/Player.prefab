@@ -1666,8 +1666,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f37d94dc513fb449b12ab25114ad3a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20000
-  rotationSpeed: 22
+  speed: 10000
+  rotationSpeed: 15
   maxHP: 0
   hpBar: {fileID: 0}
   hpLine: {fileID: 0}
@@ -1745,9 +1745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 2000
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
+  hitCount: 0
 --- !u!198 &8158462637329966585
 ParticleSystem:
   m_ObjectHideFlags: 0

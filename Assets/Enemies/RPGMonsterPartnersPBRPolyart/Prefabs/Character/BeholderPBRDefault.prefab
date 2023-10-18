@@ -1614,10 +1614,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b1980a28681cc4c9fdab9228343077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 400
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
+  amount: 200
+  hitCount: 0
 --- !u!135 &122040322649738735
 SphereCollider:
   m_ObjectHideFlags: 0
