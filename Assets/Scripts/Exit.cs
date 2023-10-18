@@ -18,7 +18,7 @@ public class Exit : MonoBehaviour
     
     public void OpenExit()
     {
-        Instantiate(GameObject.Find("ExitOpened"), gameObject.transform.position, Quaternion.identity);
+        Instantiate(GameObject.Find("ExitOpened"), gameObject.transform.position, gameObject.transform.rotation);
         Destroy(gameObject);
     }
 }
