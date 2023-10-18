@@ -20,6 +20,7 @@ public class ExitOpened : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            ScareCrowManager.instance.isWin = true;
             SceneManager.LoadScene("ResultMode");
         }
     }

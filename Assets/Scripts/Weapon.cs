@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Weapon : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class Weapon : MonoBehaviour
     AudioSource aus;
     Player player;
     public AudioClip slice;
+    public TextMeshProUGUI scarecrowTxt;
 
     private void Start()
     {
         player = GetComponentInParent<Player>();
         aus = GetComponent<AudioSource>();
+        scarecrowTxt.SetText(ScareCrowManager.instance.genScareCrow +"");
         aus.clip = slice;
     }
 
@@ -44,6 +47,7 @@ public class Weapon : MonoBehaviour
                             scarecrow.GetAnimation();
                             scarecrow.enabled = false;
                             ScareCrowManager.instance.RemoveScareCrow(scarecrow);
+                            scarecrowTxt.SetText((ScareCrowManager.instance.genScareCrow - ScareCrowManager.instance.destroyedScareCrow) + "");
                         }
                         Destroy(other.gameObject, 2);
                     }

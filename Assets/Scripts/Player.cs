@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
         isSkill = true;
         anim.SetTrigger("Skill");
         aud.PlayOneShot(aud.clip);
-        aud.PlayDelayed(1.8f);
+        aud.PlayDelayed(1.6f);
         isCoolTime = true;
         HideSkill1.SetActive(true);
         CoolNum2.SetText("10");
@@ -225,5 +225,10 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1);
         ps.Stop();
         speed += 2000;
+    }
+
+    public void Victory()
+    {
+        anim.SetTrigger("Victory");
     }
 }

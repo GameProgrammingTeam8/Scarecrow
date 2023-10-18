@@ -11,6 +11,7 @@ public class ScareCrowManager : MonoBehaviour
     public List<ScareCrow> scarecrows;
     public int genScareCrow = 0;
     public int destroyedScareCrow = 0;
+    public bool isWin = false;
     public UnityEvent onChanged;
     public UnityEvent onOpen;
     
