@@ -10,12 +10,15 @@ public class Weapon : MonoBehaviour
     Player player;
     public AudioClip slice;
     public TextMeshProUGUI scarecrowTxt;
-
-    private void Start()
+    private void Awake()
     {
         player = GetComponentInParent<Player>();
         aus = GetComponent<AudioSource>();
-        scarecrowTxt.SetText(ScareCrowManager.instance.genScareCrow +"");
+    }
+    private IEnumerator Start()
+    {
+        yield return new WaitForSeconds(0.1f);
+        scarecrowTxt.SetText(ScareCrowManager.instance.genScareCrow + "");
         aus.clip = slice;
     }
 
@@ -49,7 +52,7 @@ public class Weapon : MonoBehaviour
                             ScareCrowManager.instance.RemoveScareCrow(scarecrow);
                             scarecrowTxt.SetText((ScareCrowManager.instance.genScareCrow - ScareCrowManager.instance.destroyedScareCrow) + "");
                         }
-                        Destroy(other.gameObject, 2);
+                        Destroy(other.gameObject, 0.1f);
                     }
                 }
             }

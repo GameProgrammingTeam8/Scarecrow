@@ -5,16 +5,16 @@ using UnityEngine;
 public class ScareCrow : MonoBehaviour
 {
     Animator anim;
-    void Start()
+    void Awake()
     {
         anim = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
         ScareCrowManager.instance.AddScareCrow(this);
     }
 
-    void Update()
-    {
-       
-    }
     public void GetAnimation()
     {
         anim.SetTrigger("Attacked");
