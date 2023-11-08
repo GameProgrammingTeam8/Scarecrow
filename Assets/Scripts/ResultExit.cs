@@ -25,7 +25,7 @@ public class ResultExit : MonoBehaviour
                 SceneManager.LoadScene("PlayMode");
             }else if(whichDoor==1)
             {
-                UnityEditor.EditorApplication.isPlaying=false;
+                //UnityEditor.EditorApplication.isPlaying=false;
                 Application.Quit();
             }
         }
