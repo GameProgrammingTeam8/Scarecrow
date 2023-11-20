@@ -1,0 +1,74 @@
+{
+    "name": "MobileController",
+    "maps": [
+        {
+            "name": "MPlayer",
+            "id": "e1d9dbd9-6c38-409c-8926-bf348387277f",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "739028fe-5b5d-4289-a756-9d8a45c1339e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Slash",
+                    "type": "Button",
+                    "id": "c8da2b4c-8a8d-452b-8fca-a2080b79cebb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RSlash",
+                    "type": "Button",
+                    "id": "3c9dac36-e47a-4d8f-a679-a23240016cea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0608593f-d6d7-4c86-bb9a-4acb62eb2372",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5a315eea-fa04-4b77-8989-889faeb6195a",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Slash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84496fe8-1755-4f99-a5cd-dc8738e8947f",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RSlash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

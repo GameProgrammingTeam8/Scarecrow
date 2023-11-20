@@ -44,10 +44,10 @@ public class Player : MonoBehaviour
         hpLine = GameObject.Find("HP Line").GetComponent<RectTransform>();
         HideAttack = GameObject.Find("HideAttack");
         HideSkill1 = GameObject.Find("HideSkill1");
-        HideSkill2 = GameObject.Find("HideSkill2");
+        //HideSkill2 = GameObject.Find("HideSkill2");
         CoolNum1 = GameObject.Find("CoolNum1").GetComponent<TextMeshProUGUI>();
         CoolNum2 = GameObject.Find("CoolNum2").GetComponent<TextMeshProUGUI>();
-        CoolNum3 = GameObject.Find("CoolNum3").GetComponent<TextMeshProUGUI>();
+        //CoolNum3 = GameObject.Find("CoolNum3").GetComponent<TextMeshProUGUI>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         ps = GetComponent<ParticleSystem>();
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
     {
         HideSkill1.SetActive(false);
         HideAttack.SetActive(false);
-        HideSkill2.SetActive(false);
+        //HideSkill2.SetActive(false);
         maxHP = GetComponent<HP>().amount;
     }
 
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
             lookValue = value.Get<Vector2>().x * rotationSpeed;
     }
 
-    public void OnAttack(InputValue value)
+    public void OnSlash(InputValue value)
     {
         if (value.isPressed && isAttack == false && isSkill == false && GetComponent<HP>().amount > 0)
         {
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
         isAttack = false;
     }
 
-    public void OnSkill(InputValue value)
+    public void OnRSlash(InputValue value)
     {
         if (value.isPressed && isAttack == false && isSkill == false && isCoolTime == false && GetComponent<HP>().amount > 0)
         {
