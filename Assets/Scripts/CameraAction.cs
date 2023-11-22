@@ -23,7 +23,7 @@ public class CameraAction : MonoBehaviour
         float curYAngle = Mathf.LerpAngle(tr.eulerAngles.y, target.transform.eulerAngles.y, smoothRotate * Time.deltaTime);
         Quaternion rot = Quaternion.Euler(0, curYAngle, 0);
         tr.position = target.transform.position - (rot * Vector3.forward * dist) + (Vector3.up * height);
-        tr.LookAt(target.transform);
+        //tr.LookAt(target.transform);
     }
 
 }

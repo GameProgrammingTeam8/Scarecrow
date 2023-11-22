@@ -2826,7 +2826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.4, y: 67.9}
+  m_AnchoredPosition: {x: 0.4, y: 19}
   m_SizeDelta: {x: 162, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &116601545
@@ -18126,12 +18126,12 @@ PrefabInstance:
     - target: {fileID: 5429859871698469710, guid: cb1ab18023f46054b9aed1e0b7d7bbf5,
         type: 3}
       propertyPath: speed
-      value: 15000
+      value: 12000
       objectReference: {fileID: 0}
     - target: {fileID: 5429859871698469710, guid: cb1ab18023f46054b9aed1e0b7d7bbf5,
         type: 3}
       propertyPath: rotationSpeed
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5945555653278316852, guid: cb1ab18023f46054b9aed1e0b7d7bbf5,
         type: 3}
@@ -18143,6 +18143,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_DefaultActionMap
       value: MPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8117753569313035389, guid: cb1ab18023f46054b9aed1e0b7d7bbf5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 616a777eb757ff14c82a79feeb35d9b1, type: 2}
+    - target: {fileID: 8158462637329966585, guid: cb1ab18023f46054b9aed1e0b7d7bbf5,
+        type: 3}
+      propertyPath: ShapeModule.type
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158462637329966585, guid: cb1ab18023f46054b9aed1e0b7d7bbf5,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158462637329966585, guid: cb1ab18023f46054b9aed1e0b7d7bbf5,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158462637329966585, guid: cb1ab18023f46054b9aed1e0b7d7bbf5,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158462637329966585, guid: cb1ab18023f46054b9aed1e0b7d7bbf5,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8323318827450605912, guid: cb1ab18023f46054b9aed1e0b7d7bbf5,
         type: 3}
@@ -20687,7 +20717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1145382701
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23688,7 +23718,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 65, y: 65}
+  m_AnchoredPosition: {x: 80, y: 70}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.49999997}
 --- !u!114 &1328859689
@@ -25051,7 +25081,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -29, y: 68}
+  m_AnchoredPosition: {x: -29, y: 19.099998}
   m_SizeDelta: {x: 160, y: 16}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1400537383
@@ -30106,7 +30136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Gamepad>/select
+  m_ControlPath: <Gamepad>/buttonWest
 --- !u!1001 &1659364283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36295,7 +36325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Gamepad>/select
+  m_ControlPath: <Gamepad>/buttonSouth
 --- !u!4 &2098816623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8142149046015647502, guid: 0e22ac7c50bd4b24d86c2ab5f5c46fb1,

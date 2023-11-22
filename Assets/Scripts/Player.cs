@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
     {
         if (GetComponent<HP>().amount > 0)
         {
+            this.transform.rotation = Quaternion.Euler(0f, Mathf.Atan2(value.Get<Vector2>().x, value.Get<Vector2>().y) * Mathf.Rad2Deg, 0f);
             movementValue = value.Get<Vector2>() * speed;
             anim.SetBool("isMove", movementValue != Vector2.zero);
         }
