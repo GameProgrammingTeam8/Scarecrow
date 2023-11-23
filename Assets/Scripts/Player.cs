@@ -14,14 +14,17 @@ public class Player : MonoBehaviour
     public GameObject HideAttack;
     public GameObject HideSkill1;
     public GameObject HideSkill2;
+    public GameObject HideSkill3;
     public TextMeshProUGUI CoolNum1;
     public TextMeshProUGUI CoolNum2;
     public TextMeshProUGUI CoolNum3;
+    public TextMeshProUGUI CoolNumS;
     private Vector2 movementValue;
     public bool isAttack = false;
     public bool isSkill = false;
     private bool isCoolTime = false;
     private bool isCoolTimeD = false;
+    private bool isCoolTimeS = false;
     private float lookValue;
     private float lookX;
     private float lookZ;
@@ -45,9 +48,11 @@ public class Player : MonoBehaviour
         HideAttack = GameObject.Find("HideAttack");
         HideSkill1 = GameObject.Find("HideSkill1");
         //HideSkill2 = GameObject.Find("HideSkill2");
+        HideSkill3 = GameObject.Find("HideSkill3");
         CoolNum1 = GameObject.Find("CoolNum1").GetComponent<TextMeshProUGUI>();
         CoolNum2 = GameObject.Find("CoolNum2").GetComponent<TextMeshProUGUI>();
         //CoolNum3 = GameObject.Find("CoolNum3").GetComponent<TextMeshProUGUI>();
+        CoolNumS = GameObject.Find("CoolNumS").GetComponent<TextMeshProUGUI>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         ps = GetComponent<ParticleSystem>();
@@ -59,6 +64,7 @@ public class Player : MonoBehaviour
         HideSkill1.SetActive(false);
         HideAttack.SetActive(false);
         //HideSkill2.SetActive(false);
+        HideSkill3.SetActive(false);
         maxHP = GetComponent<HP>().amount;
     }
 
@@ -236,5 +242,36 @@ public class Player : MonoBehaviour
     public void Victory()
     {
         anim.SetTrigger("Victory");
+    }
+
+    public void OnShieldRush(InputValue value)
+    {
+        if (value.isPressed && isAttack == false && isSkill == false && isCoolTimeS == false && GetComponent<HP>().amount > 0)
+        {
+            StartCoroutine(Skill3());
+        }
+    }
+
+    IEnumerator Skill3()
+    {
+        isSkill = true;
+        anim.SetTrigger("ShieldRush");
+        speed += 3;
+        isCoolTimeS = true;
+        HideSkill3.SetActive(true);
+        CoolNumS.SetText("5");
+        yield return new WaitForSecondsRealtime(1);
+        isSkill = false;
+        speed -= 3;
+        CoolNumS.SetText("4");
+        yield return new WaitForSecondsRealtime(1);
+        CoolNumS.SetText("3");
+        yield return new WaitForSecondsRealtime(1);
+        CoolNumS.SetText("2");
+        yield return new WaitForSecondsRealtime(1);
+        CoolNumS.SetText("1");
+        yield return new WaitForSecondsRealtime(1);
+        HideSkill3.SetActive(false);
+        isCoolTimeS = false;
     }
 }
