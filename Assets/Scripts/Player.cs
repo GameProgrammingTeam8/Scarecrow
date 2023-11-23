@@ -66,7 +66,6 @@ public class Player : MonoBehaviour
     {
         if (GetComponent<HP>().amount > 0)
         {
-            this.transform.rotation = Quaternion.Euler(0f, Mathf.Atan2(value.Get<Vector2>().x, value.Get<Vector2>().y) * Mathf.Rad2Deg, 0f);
             movementValue = value.Get<Vector2>() * speed;
             anim.SetBool("isMove", movementValue != Vector2.zero);
         }
@@ -122,8 +121,6 @@ public class Player : MonoBehaviour
         aud.PlayDelayed(1.6f);
         isCoolTime = true;
         HideSkill1.SetActive(true);
-        CoolNum2.SetText("10");
-        yield return new WaitForSecondsRealtime(1);
         CoolNum2.SetText("9");
         yield return new WaitForSecondsRealtime(1);
         CoolNum2.SetText("8");
@@ -182,13 +179,22 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddRelativeForce(movementValue.x * Time.deltaTime, 0, movementValue.y * Time.deltaTime);
-        rb.AddRelativeTorque(0, lookValue * Time.deltaTime, 0);
+        transform.rotation = Quaternion.Euler(0f, Mathf.Atan2(movementValue.x, movementValue.y) * Mathf.Rad2Deg, 0f);
+        transform.position += new Vector3(movementValue.x * Time.deltaTime, 0, movementValue.y * Time.deltaTime);
+        /*if (GetComponent<HP>().amount > 0)
+        {
+            Vector3 dir = new Vector3(js.Horizontal, 0, js.Vertical);
+            dir.Normalize();
+            transform.position += dir * speed * Time.deltaTime;
+            anim.SetBool("isMove", dir != Vector3.zero);
+        }*/
+        //rb.AddRelativeForce(movementValue.x * Time.deltaTime, 0, movementValue.y * Time.deltaTime);
+        //rb.AddRelativeTorque(0, lookValue * Time.deltaTime, 0);
     }
 
     private void FixedUpdate()
     {
-        FreezeRotation();
+        //FreezeRotation();
     }
 
     public void FreezeRotation()
@@ -210,7 +216,7 @@ public class Player : MonoBehaviour
                 }
                 hpLine.localScale = new Vector3(hp.amount / maxHP, 1, 1);
             }
-            Vector3 reactVec = transform.position - other.transform.position;
+            Vector3 reactVec = new Vector3(transform.position.x - other.transform.position.x, 0, transform.position.z - other.transform.position.z);
             StartCoroutine(KnockBack(reactVec));
         }
     }
@@ -220,12 +226,10 @@ public class Player : MonoBehaviour
         ps.Play();
         anim.SetTrigger("GetHit");
         reactVec = reactVec.normalized;
-        rb.AddForce(reactVec * 40, ForceMode.Impulse);
-        speed -= 2000;
+        this.transform.position += reactVec;
 
         yield return new WaitForSeconds(1);
         ps.Stop();
-        speed += 2000;
     }
 
     public void Victory()

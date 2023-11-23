@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
     {
         if(other.tag == "Weapon")
         {
-            Vector3 reactVec = transform.position - other.transform.position;
+            Vector3 reactVec = new Vector3(transform.position.x - other.transform.position.x, 0, transform.position.z - other.transform.position.z);
             StartCoroutine(KnockBack(reactVec));
         }
     }
@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
         ps.Play();
         reactVec = reactVec.normalized;
         reactVec += Vector3.up;
-        rigid.AddForce(reactVec * 10, ForceMode.Impulse);
+        rigid.AddForce(reactVec * 20, ForceMode.Impulse);
 
         yield return new WaitForSeconds(0.3f);
         ps.Stop();
