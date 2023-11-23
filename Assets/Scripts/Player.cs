@@ -226,10 +226,11 @@ public class Player : MonoBehaviour
         ps.Play();
         anim.SetTrigger("GetHit");
         reactVec = reactVec.normalized;
-        this.transform.position += reactVec;
+        rb.AddForce(reactVec * 20, ForceMode.Impulse);
 
         yield return new WaitForSeconds(1);
         ps.Stop();
+        rb.velocity = Vector3.zero;
     }
 
     public void Victory()
