@@ -25,6 +25,10 @@ public class ResultExit : MonoBehaviour
                 SceneManager.LoadScene("PlayMode");
             }else if(whichDoor==1)
             {
+                SceneManager.LoadScene("TutorialMode");
+            }
+            else if(whichDoor==2)
+            {
                 //UnityEditor.EditorApplication.isPlaying=false;
                 Application.Quit();
             }

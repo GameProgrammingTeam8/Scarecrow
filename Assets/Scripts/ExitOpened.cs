@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ExitOpened : MonoBehaviour
 {
+    public int whichDoor;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +21,15 @@ public class ExitOpened : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            ScareCrowManager.instance.isWin = true;
-            SceneManager.LoadScene("ResultMode");
+            if (whichDoor == 0)
+            {
+                ScareCrowManager.instance.isWin = true;
+                SceneManager.LoadScene("PlayMode");
+            }
+            else if (whichDoor == 1)
+            {
+                SceneManager.LoadScene("TutorialMode");
+            }
         }
     }
 }
