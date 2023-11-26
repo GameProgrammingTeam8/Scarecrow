@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class HP : MonoBehaviour
 {
     public float amount;
+    public bool isTutorial = false;
     public int hitCount = 0;
 
     Animator anim;

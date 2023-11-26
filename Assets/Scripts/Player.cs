@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Enemy") && isAttack == false && isSkill == false)
         {
             HP hp = GetComponent<HP>();
-            if (hp != null)
+            if (hp != null && hp.isTutorial == false)
             {
                 hp.amount -= other.GetComponent<Enemy>().damage;
                 if (hp.amount < 0)
@@ -254,10 +254,12 @@ public class Player : MonoBehaviour
 
     IEnumerator Skill3()
     {
+        aud.clip = defendSFX;
         isSkill = true;
         anim.SetTrigger("ShieldRush");
         speed += 3;
         isCoolTimeS = true;
+        aud.PlayOneShot(aud.clip);
         HideSkill3.SetActive(true);
         CoolNumS.SetText("5");
         yield return new WaitForSecondsRealtime(1);
