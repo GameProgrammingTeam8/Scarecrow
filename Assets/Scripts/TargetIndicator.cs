@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TargetIndicator : MonoBehaviour
@@ -15,6 +16,15 @@ public class TargetIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Target == null)
+        {
+            foreach (Transform child in transform)
+            {
+                SetChildActive(false);
+            }
+            enabled=false;
+            return;
+        }
         var dir=Target.position-transform.position;
         if(dir.magnitude<HideDistance)
         {

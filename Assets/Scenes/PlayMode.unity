@@ -9067,7 +9067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 2122270929}
-  HideDistance: 0
+  HideDistance: 3
 --- !u!4 &495016461 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 908484026816095885, guid: e2c9b97a5185675458fc662f1d70cb0b,
@@ -17707,7 +17707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 332436815}
-  HideDistance: 0
+  HideDistance: 3
 --- !u!4 &1001515079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8501549287057824664, guid: d4bb255f76257ca4aab434ce800b3d4e,
@@ -18131,7 +18131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1204903091}
-  HideDistance: 0
+  HideDistance: 3
 --- !u!1001 &1018713179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20273,7 +20273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 566373097}
-  HideDistance: 0
+  HideDistance: 3
 --- !u!1001 &1109988804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21094,7 +21094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1140306179}
-  HideDistance: 0
+  HideDistance: 3
 --- !u!1001 &1143960415
 PrefabInstance:
   m_ObjectHideFlags: 0
