@@ -8402,7 +8402,7 @@ PrefabInstance:
     - target: {fileID: -2277131238986148145, guid: 315d432e70882614ca672cab73b4a0b3,
         type: 3}
       propertyPath: whichDoor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4668585884538919206, guid: 315d432e70882614ca672cab73b4a0b3,
         type: 3}

@@ -24,11 +24,11 @@ public class ExitOpened : MonoBehaviour
             if (whichDoor == 0)
             {
                 ScareCrowManager.instance.isWin = true;
-                SceneManager.LoadScene("PlayMode");
+                SceneManager.LoadScene("ResultMode");
             }
             else if (whichDoor == 1)
             {
-                SceneManager.LoadScene("TutorialMode");
+                SceneManager.LoadScene("PlayMode");
             }
         }
     }
