@@ -6491,7 +6491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 586943030}
-  HideDistance: 0
+  HideDistance: 3
 --- !u!1 &1462258351
 GameObject:
   m_ObjectHideFlags: 0
@@ -8811,7 +8811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 458112270}
-  HideDistance: 0
+  HideDistance: 3
 --- !u!1001 &2065962343
 PrefabInstance:
   m_ObjectHideFlags: 0
