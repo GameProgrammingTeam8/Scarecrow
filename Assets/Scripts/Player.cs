@@ -74,6 +74,10 @@ public class Player : MonoBehaviour
         {
             movementValue = value.Get<Vector2>() * speed;
             anim.SetBool("isMove", movementValue != Vector2.zero);
+            if (value.Get<Vector2>()!=new Vector2(0,0))
+            {
+                transform.rotation = Quaternion.Euler(0f, Mathf.Atan2(movementValue.x, movementValue.y) * Mathf.Rad2Deg, 0f);
+            }
         }
         else
         {
@@ -185,7 +189,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Euler(0f, Mathf.Atan2(movementValue.x, movementValue.y) * Mathf.Rad2Deg, 0f);
         transform.position += new Vector3(movementValue.x * Time.deltaTime, 0, movementValue.y * Time.deltaTime);
         /*if (GetComponent<HP>().amount > 0)
         {
