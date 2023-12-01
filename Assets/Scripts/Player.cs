@@ -228,6 +228,11 @@ public class Player : MonoBehaviour
             Vector3 reactVec = new Vector3(transform.position.x - other.transform.position.x, 0, transform.position.z - other.transform.position.z);
             StartCoroutine(KnockBack(reactVec));
         }
+        if (other.CompareTag("Bullet"))
+        {
+            Vector3 reactVec = new Vector3(transform.position.x - other.transform.position.x, 0, transform.position.z - other.transform.position.z);
+            StartCoroutine(KnockBack(reactVec));
+        }
     }
 
     IEnumerator KnockBack(Vector3 reactVec)
