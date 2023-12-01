@@ -265,14 +265,14 @@ public class Player : MonoBehaviour
         aud.clip = defendSFX;
         isSkill = true;
         anim.SetTrigger("ShieldRush");
-        speed += 3;
+        speed += 2;
         isCoolTimeS = true;
         aud.PlayOneShot(aud.clip);
         HideSkill3.SetActive(true);
         CoolNumS.SetText("5");
         yield return new WaitForSecondsRealtime(1);
+        speed -= 2;
         isSkill = false;
-        speed -= 3;
         CoolNumS.SetText("4");
         yield return new WaitForSecondsRealtime(1);
         CoolNumS.SetText("3");

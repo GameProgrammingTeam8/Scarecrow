@@ -1083,6 +1083,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basement_Passage_Prison 1 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9141259052791594138, guid: 971d7b9a87da0a94b968dcf8925a7faf,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18610,7 +18615,7 @@ PrefabInstance:
     - target: {fileID: 5429859871698469710, guid: cb1ab18023f46054b9aed1e0b7d7bbf5,
         type: 3}
       propertyPath: speed
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5429859871698469710, guid: cb1ab18023f46054b9aed1e0b7d7bbf5,
         type: 3}
@@ -33506,6 +33511,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Basement_Wall_Prison 1 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6442276713455441677, guid: 5825e9439acec5b4e80207857fa90151,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
