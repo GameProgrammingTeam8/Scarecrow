@@ -72,7 +72,7 @@ MonoBehaviour:
   lastShootTime: 0
   bulletPrefab: {fileID: 4318155128779431521, guid: defc143ea8a4f894ba276aaf9feb7cf8,
     type: 3}
-  fireRate: 1
+  fireRate: 2
   life: {fileID: -7503446060083660624}
   playerLife: {fileID: 0}
   player: {fileID: 0}
