@@ -6,10 +6,7 @@
 
 
 # 📼 Scarecrow Play Video
-<div align="center">
-https://www.youtube.com/watch?v=xlBjz41J35A&ab_channel=%EC%BB%B4%EB%A7%B9</br>
-</div>
-
+https://www.youtube.com/watch?v=xlBjz41J35A&ab_channel=%EC%BB%B4%EB%A7%B9
 
 # 🎮 게임 소개
 - 모바일 앱으로 즐길 수 있는 3D Top-View 핵앤슬래시 던전 탈출 게임입니다.
