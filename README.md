@@ -7,7 +7,7 @@
 
 # 📼 Scarecrow Play Video
 <div align="center">
-[![Scarecrow-PV](http://img.youtube.com/vi/xlBjz41J35A/0.jpg)]([https://youtu.be/xlBjz41J35A=qs])</br>
+[![Scarecrow-PV](http://img.youtube.com/vi/xlBjz41J35A/0.jpg)](https://youtu.be/xlBjz41J35A)</br>
 click here
 </div>
 
