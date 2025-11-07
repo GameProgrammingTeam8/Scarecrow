@@ -250,7 +250,7 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         ps.Stop();
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
     }
 
     public void Victory()

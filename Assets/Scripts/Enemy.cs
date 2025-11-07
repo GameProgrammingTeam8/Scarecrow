@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
 
     public void FreezeVelocity()
     {
-        rigid.velocity = Vector3.zero;
+        rigid.linearVelocity = Vector3.zero;
         rigid.angularVelocity = Vector3.zero;
     }
 
@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
         ps.Stop();
-        rigid.velocity = Vector3.zero;
+        rigid.linearVelocity = Vector3.zero;
     }
 
 }
