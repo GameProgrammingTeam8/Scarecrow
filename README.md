@@ -1,49 +1,122 @@
 # ⚔️ Scarecrow
 ![image](https://github.com/GameProgrammingTeam8/Scarecrow/assets/50892930/d8d01a6a-59ed-49c3-a517-6d9ade66b4d1)
 
-<p align="middle" >
-  <img src="https://img.shields.io/badge/Unity-000000 style=flat&logo=Unity&logoColor=white"/> <img src="https://img.shields.io/badge/C Sharp-6600FF?style=flat&logo=CSharp&logoColor=white"/>  
+<p align="middle">
+  <img src="https://img.shields.io/badge/Unity-000000?style=flat&logo=Unity&logoColor=white"/>
+  <img src="https://img.shields.io/badge/C%23-6600FF?style=flat&logo=CSharp&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Android-3DDC84?style=flat&logo=Android&logoColor=white"/>
 </p>
-
-## Note
-- This project was originally developed in 2023.</br>
-- A separate refactoring branch was created later
-to improve code structure and readability
-without changing gameplay behavior.
 
 </br>
 
-## 📼 Scarecrow Play Video
+## Overview
+
+**Scarecrow** is a mobile top-down hack & slash dungeon escape game developed with Unity.
+
+This project focuses on:
+- **State-based enemy AI design**
+- **Clear separation of combat responsibilities**
+- **Refactoring an early-stage project to improve structure and readability**
+
+It is included in my portfolio to demonstrate **system-oriented thinking** and
+how gameplay logic can be structured for clarity and extensibility.
+
+</br>
+
+## Tech Stack
+
+- Unity
+- C#
+- Android
+
+</br>
+
+## Core System
+
+### 1. State-based Enemy AI System
+Enemy behaviors are implemented using a **state-based architecture**
+to clearly separate responsibilities and simplify future extensions.
+
+**States**
+- Chase
+- Attack
+- Die
+
+**Design Intent**
+- Reduce conditional logic inside `Update`
+- Make behavior transitions explicit and predictable
+- Allow new enemy behaviors to be added without modifying existing states
+
+📂 **Related Code**
+
+Assets/02.Scripts/Unit/Enemy/
+
+</br>
+
+### 2. Combat & Hit Reaction System
+Combat logic is designed by separating **hit detection**, **damage processing**,
+and **reaction handling**. Damage is applied through a shared IDamageable interface,
+while hit feedback and knockback behavior are encapsulated
+in a reusable HitReaction component.
+
+**Components**
+- Hit Detection
+- Damage Processing
+- Knockback Reaction
+
+**Design Intent**
+- Improve readability and responsibility separation
+- Enable future skill and effect expansion without rewriting core combat logic
+
+📂 **Related Code**
+
+Assets/02.Scripts/Unit/
+
+## 🔄 Refactoring Note
+
+This project was originally developed in **2023** with a strong focus on
+**gameplay completion**.
+
+Later, a dedicated refactoring branch was created to:
+- Improve folder structure
+- Clarify naming conventions
+- Separate logic by system and state
+
+Gameplay behavior remains unchanged.
+The refactoring reflects my **current development standards**.
+
+</br>
+
+## 📼 Gameplay Video
 <div align="center">
   
 [![Scarecrow-PV](https://i9.ytimg.com/vi_webp/ZiXnrXimhiE/mq3.webp?sqp=CKDVgMwG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGD0gTChyMA8=&rs=AOn4CLBsZZKBYMMTSapDAEoY2w0DpqkCJQ)](https://www.youtube.com/watch?v=ZiXnrXimhiE)</br>
-click here
+Click to watch gameplay
+
 </div>
 
 </br>
 
-## 🎮 게임 소개
-- 모바일 앱으로 즐길 수 있는 3D Top-View 핵앤슬래시 던전 탈출 게임입니다.
-- 튜토리얼 맵에서 조작법을 익힐 수 있습니다.
-- 던전에서 몰려오는 적들을 죽이거나 피하면서 던전 곳곳에 배치된 트리거 허수아비를 모두 파괴하면 탈출을 위한 문이 열리고, 무사히 탈출하면 승리하는 게임입니다.
+## 🎮 Game Description
+Scarecrow is a mobile 3D top-view hack & slash dungeon escape game.
+
+Players destroy scarecrow triggers while avoiding enemies,
+then escape the dungeon before time runs out.
 
 </br>
 
-## 🕹️ 게임 방법
+## 🎯 Game Objective
 
--**조이스틱**을 드래그하여 드래그한 방향으로 **회전**하며 **이동**합니다.
-
--**일반 공격 및 스킬 UI**를 터치하여 **일반 공격 또는 스킬**을 시전합니다.
-
-</br>
-
-## 🎯 게임 목표
-
--튜토리얼을 진행하고 던전에 진입한 후 몰려오는 적들을 피해 허수아비를 파괴하여 던전에서 탈출하세요
+- Complete the tutorial
+- Enter the dungeon
+- Destroy all scarecrow triggers
+- Escape before HP or time runs out
 
 </br>
 
-## 🏴 패배 조건
--플레이어의 HP가 0이 되거나 제한 시간이 0이 될 때까지 던전을 탈출하지 못하면 게임에서 패배합니다.
+## 🏴 Defeat Conditions
+
+- Player HP reaches 0  
+- Time limit expires before escaping
 
 </br>
