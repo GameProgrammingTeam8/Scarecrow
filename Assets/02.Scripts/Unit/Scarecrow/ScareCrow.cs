@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ScareCrow : MonoBehaviour
+public class ScareCrow : MonoBehaviour, IDamageable
 {
     private Animator _animator;
     private HP _hp;

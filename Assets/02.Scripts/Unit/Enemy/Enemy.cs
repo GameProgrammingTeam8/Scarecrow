@@ -1,17 +1,15 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(HP))]
-public class Enemy : MonoBehaviour
+[RequireComponent(typeof(HitReaction))]
+public class Enemy : MonoBehaviour, IDamageable
 {
-    private Rigidbody _rigidbody;
     private NavMeshAgent _agent;
     private EnemyFSM _ai;
     private HP _hp;
-    private ParticleSystem _hitEffect;
+    private HitReaction _hitReaction;
     private GameObject _target;
     private HP _targetHP;
 
@@ -19,11 +17,10 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
         _ai = GetComponentInChildren<EnemyFSM>();
         _hp = GetComponent<HP>();
-        _hitEffect = GetComponent<ParticleSystem>();
+        _hitReaction = GetComponent<HitReaction>();
         _target = GameObject.Find("Player");
         _targetHP = _target.GetComponent<HP>();
         
@@ -37,27 +34,25 @@ public class Enemy : MonoBehaviour
         if (_targetHP.Value <= 0) _agent.enabled = false;
     }
 
-    private void FixedUpdate()
-    {
-        // Freeze Velocity
-        _rigidbody.linearVelocity = Vector3.zero;
-        _rigidbody.angularVelocity = Vector3.zero;
-    }
-
     // Hit Detection
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Weapon"))
         {
-            StartCoroutine(KnockBack(new Vector3(
+            Vector3 direction = new(
                 transform.position.x - other.transform.position.x,
                 0,
                 transform.position.z - other.transform.position.z
-            )));
+            );
+
+            _hitReaction.Play(direction);
         }
         else if(other.CompareTag("Player"))
         {
-            other.GetComponent<Player>().TakeDamage(Damage);
+            if (other.TryGetComponent<IDamageable>(out var damageable))
+            {
+                damageable.TakeDamage(Damage);
+            }
         }
     }
 
@@ -75,18 +70,5 @@ public class Enemy : MonoBehaviour
 
             Destroy(gameObject, 0.1f);
         }
-    }
-
-    // Knockback 반응 처리
-    private IEnumerator KnockBack(Vector3 reactVec)
-    {
-        _hitEffect.Play();
-        reactVec = reactVec.normalized;
-        reactVec += Vector3.up;
-        _rigidbody.AddForce(reactVec * 20, ForceMode.Impulse);
-
-        yield return new WaitForSeconds(0.3f);
-        _hitEffect.Stop();
-        _rigidbody.linearVelocity = Vector3.zero;
     }
 }

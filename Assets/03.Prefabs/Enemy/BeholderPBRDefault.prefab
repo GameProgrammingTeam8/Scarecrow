@@ -45,15 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50419527d7315948bbb71b0d1cee725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 10
-  angle: 180
-  objectsLayers:
+  _distance: 10
+  _angle: 180
+  _objectsLayers:
     serializedVersion: 2
     m_Bits: 8
-  obstaclesLayers:
+  _obstaclesLayers:
     serializedVersion: 2
     m_Bits: 1
-  detectedObject: {fileID: 0}
 --- !u!114 &509205965420923826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1610,6 +1609,7 @@ GameObject:
   - component: {fileID: 4530003306004526970}
   - component: {fileID: 4530003305994672282}
   - component: {fileID: 3365100879124710102}
+  - component: {fileID: 7449015959589700527}
   - component: {fileID: -7503446060083660624}
   - component: {fileID: 122040322649738735}
   - component: {fileID: 7964581747141471213}
@@ -1676,6 +1676,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 200
+--- !u!114 &7449015959589700527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4530003306004163418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60dccacffafabe9439746aa2b0cfae74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitReaction
+  _knockbackForce: 20
+  _duration: 0.3
+  _extraDirection: {x: 0, y: 1, z: 0}
 --- !u!114 &-7503446060083660624
 MonoBehaviour:
   m_ObjectHideFlags: 0

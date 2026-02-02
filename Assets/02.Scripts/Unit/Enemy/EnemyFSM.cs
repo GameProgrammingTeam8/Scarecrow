@@ -48,7 +48,7 @@ public class EnemyFSM : MonoBehaviour
     {
         if (!_agent.isActiveAndEnabled) return;
 
-        if (_sight.detectedObject == null)
+        if (_sight.DetectedObject == null)
         {
             CurrentState = EnemyState.Chase;
             return;
@@ -56,12 +56,12 @@ public class EnemyFSM : MonoBehaviour
         
         _agent.isStopped = true;
 
-        LookTo(_sight.detectedObject.transform.position);
+        LookTo(_sight.DetectedObject.transform.position);
         Shoot();
 
         float distanceToPlayer = Vector3.Distance(
             transform.position,
-            _sight.detectedObject.transform.position
+            _sight.DetectedObject.transform.position
         );
 
         if (distanceToPlayer > _attackDistance * 1.1f)

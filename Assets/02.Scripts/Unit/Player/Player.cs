@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class Player : MonoBehaviour
+[RequireComponent(typeof(HitReaction))]
+public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private bool _inTutorialMode = false;
     [SerializeField] private float _moveSpeed = 4;    
@@ -18,13 +19,12 @@ public class Player : MonoBehaviour
     private Vector2 _movePosition;
     private Animator _animator;
     private AudioSource _audioSource;
-    private Rigidbody _rigidbody;
     private HP _hp;
+    private HitReaction _hitReaction;
     private RectTransform _hpLine;
     private GameObject _basicAttackDeactivationUI;
     private GameObject _slashRDeactivationUI;
     private GameObject _shieldRushDeactivationUI;
-    private ParticleSystem _hitEffect;
     private ParticleSystem _shieldRushEffect;
     private TextMeshProUGUI _attackCooldownUI;
     private TextMeshProUGUI _slashRCooldownUI;
@@ -42,10 +42,9 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _hp = GetComponent<HP>();
+        _hitReaction = GetComponent<HitReaction>();
         _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody>();
         _audioSource = GetComponent<AudioSource>();
-        _hitEffect = GetComponent<ParticleSystem>();
 
         _shieldRushEffect = GameObject.Find("SkillEffect").GetComponent<ParticleSystem>();
         _shieldRushEffect.gameObject.SetActive(false);
@@ -73,12 +72,6 @@ public class Player : MonoBehaviour
         );
     }
 
-    private void FixedUpdate()
-    {
-        // Freeze Rotation
-        _rigidbody.angularVelocity = Vector3.zero;
-    }
-
     // Hit Detection
     private void OnTriggerEnter(Collider other)
     {
@@ -87,13 +80,13 @@ public class Player : MonoBehaviour
         {
             if (IsAttacking || IsSkillUsing || _isRush) return;
 
-            Vector3 reactVec = new(
+            Vector3 direction = new(
                 transform.position.x - other.transform.position.x,
                 0,
                 transform.position.z - other.transform.position.z
             );
 
-            StartCoroutine(KnockBack(reactVec));
+            _hitReaction.Play(direction);
         }
     }
 
@@ -112,22 +105,6 @@ public class Player : MonoBehaviour
     public void Victory()
     {
         _animator.SetTrigger("Victory");
-    }
-
-    // Knockback 반응 처리
-    private IEnumerator KnockBack(Vector3 reactVec)
-    {
-        _hitEffect.Play();
-        _animator.SetTrigger("GetHit");
-
-        _rigidbody.AddForce(
-            reactVec.normalized * 20,
-            ForceMode.Impulse
-        );
-
-        yield return new WaitForSecondsRealtime(1);;
-        _hitEffect.Stop();
-        _rigidbody.linearVelocity = Vector3.zero;
     }
 
     // 사망 시 Result Mode로 이동 처리
@@ -159,7 +136,7 @@ public class Player : MonoBehaviour
         );
     }
 
-    public void OnSlash(InputValue value)
+    public void OnAttack(InputValue value)
     {
         if (value.isPressed &&
             !IsAttacking &&
@@ -170,7 +147,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnRSlash(InputValue value)
+    public void OnSlashR(InputValue value)
     {
         if (value.isPressed &&
             !IsAttacking &&

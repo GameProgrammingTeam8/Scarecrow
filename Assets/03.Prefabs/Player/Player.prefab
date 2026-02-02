@@ -1192,7 +1192,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1612,6 +1612,7 @@ GameObject:
   - component: {fileID: 5657798329406528454}
   - component: {fileID: 5945555653278316852}
   - component: {fileID: 5429859871698469710}
+  - component: {fileID: 170660583736593046}
   - component: {fileID: 2639166795771119630}
   - component: {fileID: 6508775292913802899}
   - component: {fileID: 9030781812962135658}
@@ -1711,9 +1712,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inTutorialMode: 0
+  _moveSpeed: 4
   _attackSFX: {fileID: 8300000, guid: 22c855003f0c4ea45a97217e52d96c7f, type: 3}
   _skillSFX: {fileID: 8300000, guid: 6bbbbf4b2cd2a94419e28ca6a50fa6c1, type: 3}
   _defendSFX: {fileID: 8300000, guid: 9f7961b0dfa7bd743a7096a46994d62d, type: 3}
+--- !u!114 &170660583736593046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4337971948662364541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60dccacffafabe9439746aa2b0cfae74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitReaction
+  _knockbackForce: 20
+  _duration: 1
+  _extraDirection: {x: 0, y: 0, z: 0}
 --- !u!136 &2639166795771119630
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "MobileController",
     "maps": [
         {
@@ -15,19 +16,19 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Slash",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "c8da2b4c-8a8d-452b-8fca-a2080b79cebb",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RSlash",
+                    "name": "SlashR",
                     "type": "Button",
                     "id": "3c9dac36-e47a-4d8f-a679-a23240016cea",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -61,7 +62,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Slash",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -72,7 +73,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RSlash",
+                    "action": "SlashR",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

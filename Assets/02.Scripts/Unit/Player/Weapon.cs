@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private float _damage = 100;
@@ -19,15 +20,9 @@ public class Weapon : MonoBehaviour
         
         _audioSource.PlayOneShot(_sliceSFX);
         
-        if (other.CompareTag("Enemy"))
+        if (other.TryGetComponent<IDamageable>(out var damageable))
         {
-            var target = other.GetComponent<Enemy>();
-            target.TakeDamage(_damage);
-        }
-        else if (other.CompareTag("ScareCrow"))
-        {
-            var target = other.GetComponent<ScareCrow>();
-            target.TakeDamage(_damage);
+            damageable.TakeDamage(_damage);
         }
     }
 }
