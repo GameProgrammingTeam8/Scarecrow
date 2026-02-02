@@ -9,7 +9,7 @@
 ## 📼 Scarecrow Play Video
 <div align="center">
   
-[![Scarecrow-PV](https://i.ytimg.com/vi/xlBjz41J35A/maxresdefault.jpg)](https://www.youtube.com/watch?v=xlBjz41J35A)</br>
+[![Scarecrow-PV](https://i9.ytimg.com/vi_webp/ZiXnrXimhiE/mq3.webp?sqp=CKDVgMwG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGD0gTChyMA8=&rs=AOn4CLBsZZKBYMMTSapDAEoY2w0DpqkCJQ)](https://www.youtube.com/watch?v=ZiXnrXimhiE)</br>
 click here
 </div>
 
